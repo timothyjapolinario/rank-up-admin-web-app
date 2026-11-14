@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "hubs": [
+    { "id": "riverside", "name": "Riverside Courts", "location": "Portland, Oregon", "isActive": true, "createdAt": "2025-01-10T09:00:00.000Z" },
+    { "id": "eastside", "name": "Eastside Rally Club", "location": "Austin, Texas", "isActive": true, "createdAt": "2025-01-15T09:00:00.000Z" }
+  ],
+  "players": [
+    { "id": "maya", "hubId": "riverside", "displayName": "Maya Chen", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "eli", "hubId": "riverside", "displayName": "Eli Brooks", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "jordan", "hubId": "riverside", "displayName": "Jordan Park", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "sam", "hubId": "riverside", "displayName": "Sam Rivera", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "noor", "hubId": "riverside", "displayName": "Noor Haddad", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "alex", "hubId": "riverside", "displayName": "Alex Kim", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-12T09:00:00.000Z", "updatedAt": "2025-01-12T09:00:00.000Z" },
+    { "id": "riley", "hubId": "eastside", "displayName": "Riley Morgan", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-18T09:00:00.000Z", "updatedAt": "2025-01-18T09:00:00.000Z" },
+    { "id": "casey", "hubId": "eastside", "displayName": "Casey Patel", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-18T09:00:00.000Z", "updatedAt": "2025-01-18T09:00:00.000Z" },
+    { "id": "avery", "hubId": "eastside", "displayName": "Avery James", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-18T09:00:00.000Z", "updatedAt": "2025-01-18T09:00:00.000Z" },
+    { "id": "drew", "hubId": "eastside", "displayName": "Drew Wilson", "avatarUrl": null, "isActive": true, "initialMMR": 1000, "currentMMR": 1000, "createdAt": "2025-01-18T09:00:00.000Z", "updatedAt": "2025-01-18T09:00:00.000Z" }
+  ],
+  "matches": [
+    {
+      "id": "match-1", "hubId": "riverside", "playedAt": "2025-04-13T17:00:00.000Z", "team1Score": 17, "team2Score": 21, "winningTeamNumber": 2, "status": "Completed", "isOfficial": true, "team1Confirmed": true, "team2Confirmed": true, "youtubeVideoUrl": null, "correctionReason": null, "voidReason": null, "createdAt": "2025-04-13T19:00:00.000Z", "updatedAt": "2025-04-13T19:00:00.000Z",
+      "members": [
+        { "id": "member-1", "playerId": "maya", "displayName": "Maya Chen", "teamNumber": 1, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-2", "playerId": "noor", "displayName": "Noor Haddad", "teamNumber": 1, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-3", "playerId": "eli", "displayName": "Eli Brooks", "teamNumber": 2, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-4", "playerId": "alex", "displayName": "Alex Kim", "teamNumber": 2, "mmrBefore": null, "mmrChange": null, "mmrAfter": null }
+      ]
+    },
+    {
+      "id": "match-2", "hubId": "riverside", "playedAt": "2025-04-20T18:30:00.000Z", "team1Score": 21, "team2Score": 16, "winningTeamNumber": 1, "status": "Completed", "isOfficial": true, "team1Confirmed": true, "team2Confirmed": true, "youtubeVideoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "correctionReason": null, "voidReason": null, "createdAt": "2025-04-20T20:00:00.000Z", "updatedAt": "2025-04-20T20:00:00.000Z",
+      "members": [
+        { "id": "member-5", "playerId": "maya", "displayName": "Maya Chen", "teamNumber": 1, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-6", "playerId": "eli", "displayName": "Eli Brooks", "teamNumber": 1, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-7", "playerId": "jordan", "displayName": "Jordan Park", "teamNumber": 2, "mmrBefore": null, "mmrChange": null, "mmrAfter": null },
+        { "id": "member-8", "playerId": "sam", "displayName": "Sam Rivera", "teamNumber": 2, "mmrBefore": null, "mmrChange": null, "mmrAfter": null }
+      ]
+    }
+  ]
+}
