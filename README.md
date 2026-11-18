@@ -4,6 +4,8 @@ The admin app manages hubs, players, and matches through the RankUp API. The pub
 
 ## Run locally
 
+Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` first (see `.env.example`). These are public client settings; never put a Supabase secret or `service_role` key in this app.
+
 ```bash
 npm install
 npm run dev
@@ -29,6 +31,16 @@ Use **Export API backup** to download a snapshot of the data returned by the API
 Build and publish the public website after replacing the file.
 
 For production, set `VITE_API_BASE_URL` to the API's base URL including `/api/v1` (for example `https://api.example.test/api/v1`) and configure the API to allow the admin app's origin.
+
+## Sign-in
+
+The admin app uses Supabase email/password sign-in. It has no sign-up flow. In the Supabase dashboard, disable public sign-ups and create administrator accounts yourself. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as GitHub Actions repository variables for Pages deployments.
+
+The admin UI requires a signed-in session and sends its Supabase access token with API requests. API-side JWT validation and authorization are intentionally not included here; until that is set up separately, the API endpoints are not protected by this sign-in gate. The API also needs to allow the Pages origin through CORS.
+
+## GitHub Pages deployment
+
+Pushing to `main` builds and deploys the app to `https://timothyjapolinario.github.io/rank-up-admin-web-app/`. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow configures the Pages base path and production API URL; the API must allow the Pages origin (`https://timothyjapolinario.github.io`) through CORS.
 
 ## Build and tests
 

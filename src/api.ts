@@ -1,4 +1,5 @@
 import type { Dataset, Hub, Match, MatchMember, Player } from './domain'
+import { getSupabaseClient } from './supabase'
 
 interface ApiHub {
   id: string
@@ -53,12 +54,19 @@ interface ApiPage<T> {
 const apiBase = (import.meta.env.VITE_API_BASE_URL || '/api/v1').replace(/\/$/, '')
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const { data: { session }, error: sessionError } = await getSupabaseClient().auth.getSession()
+  if (sessionError) throw sessionError
+  if (!session) throw new Error('Your session has expired. Sign in again to continue.')
+
+  const headers = new Headers(init?.headers)
+  if (init?.body && !headers.has('Content-Type')) {
+    headers.set('Content-Type', 'application/json')
+  }
+  headers.set('Authorization', `Bearer ${session.access_token}`)
+
   const response = await fetch(`${apiBase}${path}`, {
     ...init,
-    headers: {
-      ...(init?.body ? { 'Content-Type': 'application/json' } : {}),
-      ...init?.headers,
-    },
+    headers,
   })
 
   const contentType = response.headers.get('content-type') ?? ''

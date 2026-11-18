@@ -228,3 +228,15 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   .team-composer { grid-template-columns: 1fr; }
   .modal-card { padding: 17px; }
 }
+.sign-out-button { display: grid; width: 28px; height: 28px; flex: 0 0 auto; place-items: center; border: 1px solid #293744; border-radius: 7px; background: transparent; color: #8291a1; cursor: pointer; font-size: 15px; }
+.sign-out-button:hover { border-color: #445363; color: #e7edf4; }
+.admin-user > div:nth-child(2) { min-width: 0; }
+.admin-user strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.auth-shell { display: grid; min-height: 100vh; place-items: center; padding: 24px; background: radial-gradient(ellipse at 75% 5%, rgba(52,83,106,.16), transparent 34rem), var(--bg); }
+.auth-card { width: min(100%, 390px); border: 1px solid #263341; border-radius: 13px; background: linear-gradient(150deg,#151e28,#111821); padding: 30px; box-shadow: 0 22px 80px rgba(0,0,0,.32); }
+.auth-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; color: #e7edf4; font-size: 20px; font-weight: 800; letter-spacing: -.06em; }
+.auth-card .eyebrow { margin: 0 0 10px; }
+.auth-card h1 { margin: 0; color: #edf2f7; font-size: 28px; letter-spacing: -.05em; }
+.auth-description, .auth-card > p:not(.eyebrow) { margin: 8px 0 22px; color: #8291a1; font-size: 11px; line-height: 1.6; }
+.auth-card .field input { min-height: 42px; font-size: 12px; }
+.auth-submit { width: 100%; min-height: 42px; margin-top: 3px; }

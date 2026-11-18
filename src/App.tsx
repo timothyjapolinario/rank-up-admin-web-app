@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { Dataset, Hub, Match, Player } from './domain'
+import { useAdminAuth } from './AuthGate'
 import {
   cancelMatch as cancelMatchApi,
   completeMatch as completeMatchApi,
@@ -16,6 +17,7 @@ type Section = 'overview' | 'players' | 'matches'
 type Dialog = 'hub' | 'player' | 'match' | null
 
 function App() {
+  const { user, signOut } = useAdminAuth()
   const [dataset, setDataset] = useState<Dataset>({ version: 1, hubs: [], players: [], matches: [] })
   const [hubId, setHubId] = useState('')
   const [section, setSection] = useState<Section>('overview')
@@ -281,7 +283,17 @@ function App() {
         </nav>
         <div className="sidebar-spacer" />
         <div className="sidebar-note"><span className="note-icon">✦</span><p>Every match is a chance to climb.</p><span>RankUp · Local admin workspace</span></div>
-        <div className="admin-user"><div className="user-avatar">A</div><div><strong>Administrator</strong><small>Local workspace</small></div><span className="user-dot" /></div>
+        <div className="admin-user">
+          <div className="user-avatar">{user.email?.slice(0, 1).toUpperCase() ?? 'A'}</div>
+          <div><strong>{user.email}</strong><small>Signed in</small></div>
+          <button
+            className="sign-out-button"
+            type="button"
+            title="Sign out"
+            aria-label="Sign out"
+            onClick={() => void signOut().catch((cause: unknown) => setError(errorMessage(cause)))}
+          >↪</button>
+        </div>
       </aside>
 
       <main className="main-panel">
