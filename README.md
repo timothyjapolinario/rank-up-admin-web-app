@@ -4,7 +4,7 @@ The admin app manages hubs, players, and matches through the RankUp API. The pub
 
 ## Run locally
 
-Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in `.env.local` first (see `.env.example`). These are public client settings; never put a Supabase secret or `service_role` key in this app.
+Set `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and `VITE_API_BASE_URL` in `.env.local` first (see `.env.example`). These are public client settings; never put a Supabase secret or `service_role` key in this app. For local development, `/api/v1` uses the Vite API proxy.
 
 ```bash
 npm install
@@ -30,11 +30,11 @@ Use **Export API backup** to download a snapshot of the data returned by the API
 
 Build and publish the public website after replacing the file.
 
-For production, set `VITE_API_BASE_URL` to the API's base URL including `/api/v1` (for example `https://api.example.test/api/v1`) and configure the API to allow the admin app's origin.
+For production, set `VITE_API_BASE_URL` to the API's base URL including `/api/v1` and configure the API to allow the admin app's origin.
 
 ## Sign-in
 
-The admin app uses Supabase email/password sign-in. It has no sign-up flow. In the Supabase dashboard, disable public sign-ups and create administrator accounts yourself. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as GitHub Actions repository variables for Pages deployments.
+The admin app uses Supabase email/password sign-in. It has no sign-up flow. In the Supabase dashboard, disable public sign-ups and create administrator accounts yourself. Set `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and `VITE_API_BASE_URL` as GitHub Actions repository variables for Pages deployments. The API variable must be the full API URL ending in `/api/v1` (currently `https://rankup-api-h7gecre8b2f4f0e2.eastasia-01.azurewebsites.net/api/v1`).
 
 The admin UI requires a signed-in session and sends its Supabase access token with API requests. API-side JWT validation and authorization are intentionally not included here; until that is set up separately, the API endpoints are not protected by this sign-in gate. The API also needs to allow `https://admin.rankup.site` through CORS.
 

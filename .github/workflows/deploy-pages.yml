@@ -34,19 +34,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Verify Supabase configuration
+      - name: Verify frontend configuration
         env:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
         run: |
           test -n "$VITE_SUPABASE_URL" || (echo "Set the VITE_SUPABASE_URL repository variable." && exit 1)
           test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" || (echo "Set the VITE_SUPABASE_PUBLISHABLE_KEY repository variable." && exit 1)
+          test -n "$VITE_API_BASE_URL" || (echo "Set the VITE_API_BASE_URL repository variable." && exit 1)
+          case "$VITE_API_BASE_URL" in
+            */api/v1) ;;
+            *) echo "VITE_API_BASE_URL must end in /api/v1." && exit 1 ;;
+          esac
 
       - name: Build admin app
         run: pnpm build
         env:
           VITE_BASE_PATH: /
-          VITE_API_BASE_URL: https://rankup-api-h7gecre8b2f4f0e2.eastasia-01.azurewebsites.net/api/v1
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
