@@ -36,11 +36,15 @@ For production, set `VITE_API_BASE_URL` to the API's base URL including `/api/v1
 
 The admin app uses Supabase email/password sign-in. It has no sign-up flow. In the Supabase dashboard, disable public sign-ups and create administrator accounts yourself. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as GitHub Actions repository variables for Pages deployments.
 
-The admin UI requires a signed-in session and sends its Supabase access token with API requests. API-side JWT validation and authorization are intentionally not included here; until that is set up separately, the API endpoints are not protected by this sign-in gate. The API also needs to allow the Pages origin through CORS.
+The admin UI requires a signed-in session and sends its Supabase access token with API requests. API-side JWT validation and authorization are intentionally not included here; until that is set up separately, the API endpoints are not protected by this sign-in gate. The API also needs to allow `https://admin.rankup.site` through CORS.
 
 ## GitHub Pages deployment
 
-Pushing to `main` builds and deploys the app to `https://timothyjapolinario.github.io/rank-up-admin-web-app/`. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. The workflow configures the Pages base path and production API URL; the API must allow the Pages origin (`https://timothyjapolinario.github.io`) through CORS.
+Pushing to `main` builds and deploys the app to `https://admin.rankup.site/`. The `public/CNAME` file configures this custom domain in the Pages artifact. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions** and set the custom domain to `admin.rankup.site`.
+
+Create a DNS CNAME record for `admin` pointing to `timothyjapolinario.github.io`, then enable **Enforce HTTPS** after GitHub verifies the domain. The workflow builds with the site root as its Vite base path; the API must allow `https://admin.rankup.site` through CORS.
+
+Set `https://admin.rankup.site` as the Supabase **Site URL** in Authentication URL Configuration.
 
 ## Build and tests
 
