@@ -7,8 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target:
-          "https://rankup-api-h7gecre8b2f4f0e2.eastasia-01.azurewebsites.net",
+        target: "https://localhost:7081",
         secure: false,
         changeOrigin: true,
       },

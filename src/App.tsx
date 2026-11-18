@@ -21,6 +21,7 @@ function App() {
   const [dataset, setDataset] = useState<Dataset>({ version: 1, hubs: [], players: [], matches: [] })
   const [hubId, setHubId] = useState('')
   const [section, setSection] = useState<Section>('overview')
+  const [exportToolsOpen, setExportToolsOpen] = useState(false)
   const [dialog, setDialog] = useState<Dialog>(null)
   const [editingPlayer, setEditingPlayer] = useState<Player | null>(null)
   const [search, setSearch] = useState('')
@@ -29,6 +30,10 @@ function App() {
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
   const [startupError, setStartupError] = useState('')
+
+  function handleSignOut() {
+    void signOut().catch((cause: unknown) => setError(errorMessage(cause)))
+  }
 
   useEffect(() => {
     let active = true
@@ -49,6 +54,10 @@ function App() {
       active = false
     }
   }, [])
+
+  useEffect(() => {
+    setExportToolsOpen(false)
+  }, [section])
 
   const activeHub = dataset.hubs.find((hub) => hub.id === hubId)
   const hubPlayers = useMemo(
@@ -291,7 +300,7 @@ function App() {
             type="button"
             title="Sign out"
             aria-label="Sign out"
-            onClick={() => void signOut().catch((cause: unknown) => setError(errorMessage(cause)))}
+            onClick={handleSignOut}
           >↪</button>
         </div>
       </aside>
@@ -299,6 +308,7 @@ function App() {
       <main className="main-panel">
         <header className="topbar">
           <div className="mobile-brand"><span className="brand-mark">R</span> rankup</div>
+          <button className="button button-quiet mobile-sign-out" type="button" onClick={handleSignOut}>Sign out</button>
           <div className="breadcrumb"><span>Workspace</span><i>/</i>{section}</div>
           <div className="topbar-actions">
             <span className={`connection ${startupError ? '' : 'is-online'}`}>
@@ -334,9 +344,16 @@ function App() {
             <div className="heading-actions">
               <button className="button button-secondary" onClick={() => { setEditingPlayer(null); setDialog('player') }} disabled={!activeHub?.isActive || loading || Boolean(startupError)}>＋ Add player</button>
               {section !== 'players' && <button className="button button-primary" disabled={matchFormPlayers < 4} onClick={() => setDialog('match')}>＋ Record match</button>}
+              <button
+                className="button button-quiet export-toggle"
+                type="button"
+                aria-expanded={exportToolsOpen}
+                aria-controls="data-export-tools"
+                onClick={() => setExportToolsOpen((open) => !open)}
+              >{exportToolsOpen ? 'Hide exports' : 'Export data'}</button>
             </div>
           </section>
-          <section className="publish-bar" aria-label="Data export">
+          <section className="publish-bar" id="data-export-tools" aria-label="Data export" hidden={!exportToolsOpen}>
             <div><strong>API-backed data</strong><span>Publish API results for the public RankUp website.</span></div>
             <div className="publish-actions">
               <button className="button button-secondary" onClick={exportBackup} disabled={loading || Boolean(startupError)}>Export API backup</button>

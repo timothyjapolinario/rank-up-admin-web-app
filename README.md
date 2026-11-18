@@ -4,7 +4,7 @@ The admin app manages hubs, players, and matches through the RankUp API. The pub
 
 ## Run locally
 
-Set `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and `VITE_API_BASE_URL` in `.env.local` first (see `.env.example`). These are public client settings; never put a Supabase secret or `service_role` key in this app. For local development, `/api/v1` uses the Vite API proxy.
+Set `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and `VITE_API_BASE_URL` in `.env.local` first (see `.env.example`). These are public client settings; never put a Supabase secret or `service_role` key in this app. For local development, set `VITE_API_BASE_URL=/api/v1` so the Vite proxy forwards requests to `https://localhost:7081`.
 
 ```bash
 npm install
